@@ -1,0 +1,1796 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Quality Info Record",
+    "version": "1 ",
+    "description": "\r\n\r\nThe data related to a quality info record and first article inspection has one entity type each. For read operations, filter information must be sent according to the OData protocol. All filter information is utilized when retrieving quality info records or data related to first article inspection. The detailed entity data is sent in the response. If any issues arise when quality info records or data related to first article inspection is retrieved, the system displays error messages in the response.\r\n"
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com/http.svc/ahp2/SAP_S4HANA_ON-PREMISE/2021.000/EN/a5/77b05467254dd6a186e78c9acd1f7b/frameset.htm"
+  },
+  "x-sap-api-type": "ODATA",
+  "x-sap-shortText": "Create, read, update, and delete data related to quality info records and first article inspection through this synchronous inbound service",
+  "x-sap-api-deprecated": "No",
+  "x-sap-software-min-version": "2021",
+  "x-sap-ext-overview": [
+    {
+      "name": "Authentication Methods",
+      "values": [
+        {
+          "text": "Basic, x509",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Purchasing Quality Info Record",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "x-sap-stateInfo": {
+    "state": "active"
+  },
+  "security": [
+    {
+      "basicAuthentication": []
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV",
+      "variables": {
+        "host": {
+          "default": ""
+        },
+        "port": {
+          "default": ""
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "First Article Inspection Data"
+    },
+    {
+      "name": "Quality Info Record Data"
+    }
+  ],
+  "paths": {
+    "/QualityFirstArticleInspection": {
+      "get": {
+        "summary": "Get entities from QualityFirstArticleInspection",
+        "tags": [
+          "First Article Inspection Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmtIntID desc",
+                  "QltyInProcmt1stArticleInsp",
+                  "QltyInProcmt1stArticleInsp desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "InspLotUsageDecisionValuation",
+                  "InspLotUsageDecisionValuation desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmt1stArticleInsp",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "InspLotUsageDecisionValuation",
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of QualityFirstArticleInspectionType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to QualityFirstArticleInspection",
+        "tags": [
+          "First Article Inspection Data"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityFirstArticleInspectionType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/QualityFirstArticleInspection(Material='{Material}',QltyInProcmtIntID='{QltyInProcmtIntID}',QltyInProcmt1stArticleInsp='{QltyInProcmt1stArticleInsp}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "QltyInProcmtIntID",
+          "in": "path",
+          "required": true,
+          "description": "Quality Info Record in Procurement Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        },
+        {
+          "name": "QltyInProcmt1stArticleInsp",
+          "in": "path",
+          "required": true,
+          "description": "First Article Inspection Number in Quality Info Record",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from QualityFirstArticleInspection by key",
+        "tags": [
+          "First Article Inspection Data"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmt1stArticleInsp",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "InspLotUsageDecisionValuation",
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityFirstArticleInspectionType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in QualityFirstArticleInspection",
+        "tags": [
+          "First Article Inspection Data"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified QualityFirstArticleInspectionType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from QualityFirstArticleInspection",
+        "tags": [
+          "First Article Inspection Data"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/QualityFirstArticleInspection(Material='{Material}',QltyInProcmtIntID='{QltyInProcmtIntID}',QltyInProcmt1stArticleInsp='{QltyInProcmt1stArticleInsp}')/to_QltyInProcurement": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "QltyInProcmtIntID",
+          "in": "path",
+          "required": true,
+          "description": "Quality Info Record in Procurement Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        },
+        {
+          "name": "QltyInProcmt1stArticleInsp",
+          "in": "path",
+          "required": true,
+          "description": "First Article Inspection Number in Quality Info Record",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get related to_QltyInProcurement",
+        "tags": [
+          "First Article Inspection Data",
+          "Quality Info Record Data"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "Supplier",
+                  "Plant",
+                  "MaterialRevisionLevel",
+                  "QltyInProcmtReleaseValidTo",
+                  "BaseUnit",
+                  "ReleasedQuantity",
+                  "BlockReason",
+                  "ProcurementBlock",
+                  "QltyInProcmtRelQtyIsActive",
+                  "QltyInProcmtInspControl",
+                  "ProdnPieceApprovalIsRequired",
+                  "ProductionPieceApproval",
+                  "ProductionPieceApprovalLevel",
+                  "ProductionPieceApprovalStatus",
+                  "IsDeleted",
+                  "QualityManagementSystem",
+                  "QltyInProcmtCertfnValidTo",
+                  "InspectionLotType",
+                  "QltyInProcmtLotCrtnLeadTime",
+                  "QltyInProcmtCertificateCtrl",
+                  "QltyInProcmtLongText",
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityInProcurementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/QualityInProcurement": {
+      "get": {
+        "summary": "Get entities from QualityInProcurement",
+        "tags": [
+          "Quality Info Record Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmtIntID desc",
+                  "Supplier",
+                  "Supplier desc",
+                  "Plant",
+                  "Plant desc",
+                  "MaterialRevisionLevel",
+                  "MaterialRevisionLevel desc",
+                  "QltyInProcmtReleaseValidTo",
+                  "QltyInProcmtReleaseValidTo desc",
+                  "BaseUnit",
+                  "BaseUnit desc",
+                  "ReleasedQuantity",
+                  "ReleasedQuantity desc",
+                  "BlockReason",
+                  "BlockReason desc",
+                  "ProcurementBlock",
+                  "ProcurementBlock desc",
+                  "QltyInProcmtRelQtyIsActive",
+                  "QltyInProcmtRelQtyIsActive desc",
+                  "QltyInProcmtInspControl",
+                  "QltyInProcmtInspControl desc",
+                  "ProdnPieceApprovalIsRequired",
+                  "ProdnPieceApprovalIsRequired desc",
+                  "ProductionPieceApproval",
+                  "ProductionPieceApproval desc",
+                  "ProductionPieceApprovalLevel",
+                  "ProductionPieceApprovalLevel desc",
+                  "ProductionPieceApprovalStatus",
+                  "ProductionPieceApprovalStatus desc",
+                  "IsDeleted",
+                  "IsDeleted desc",
+                  "QualityManagementSystem",
+                  "QualityManagementSystem desc",
+                  "QltyInProcmtCertfnValidTo",
+                  "QltyInProcmtCertfnValidTo desc",
+                  "InspectionLotType",
+                  "InspectionLotType desc",
+                  "QltyInProcmtLotCrtnLeadTime",
+                  "QltyInProcmtLotCrtnLeadTime desc",
+                  "QltyInProcmtCertificateCtrl",
+                  "QltyInProcmtCertificateCtrl desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "Supplier",
+                  "Plant",
+                  "MaterialRevisionLevel",
+                  "QltyInProcmtReleaseValidTo",
+                  "BaseUnit",
+                  "ReleasedQuantity",
+                  "BlockReason",
+                  "ProcurementBlock",
+                  "QltyInProcmtRelQtyIsActive",
+                  "QltyInProcmtInspControl",
+                  "ProdnPieceApprovalIsRequired",
+                  "ProductionPieceApproval",
+                  "ProductionPieceApprovalLevel",
+                  "ProductionPieceApprovalStatus",
+                  "IsDeleted",
+                  "QualityManagementSystem",
+                  "QltyInProcmtCertfnValidTo",
+                  "InspectionLotType",
+                  "QltyInProcmtLotCrtnLeadTime",
+                  "QltyInProcmtCertificateCtrl",
+                  "QltyInProcmtLongText",
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of QualityInProcurementType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to QualityInProcurement",
+        "tags": [
+          "Quality Info Record Data"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityInProcurementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/QualityInProcurement(Material='{Material}',QltyInProcmtIntID='{QltyInProcmtIntID}')": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "QltyInProcmtIntID",
+          "in": "path",
+          "required": true,
+          "description": "Quality Info Record in Procurement Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from QualityInProcurement by key",
+        "tags": [
+          "Quality Info Record Data"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "Supplier",
+                  "Plant",
+                  "MaterialRevisionLevel",
+                  "QltyInProcmtReleaseValidTo",
+                  "BaseUnit",
+                  "ReleasedQuantity",
+                  "BlockReason",
+                  "ProcurementBlock",
+                  "QltyInProcmtRelQtyIsActive",
+                  "QltyInProcmtInspControl",
+                  "ProdnPieceApprovalIsRequired",
+                  "ProductionPieceApproval",
+                  "ProductionPieceApprovalLevel",
+                  "ProductionPieceApprovalStatus",
+                  "IsDeleted",
+                  "QualityManagementSystem",
+                  "QltyInProcmtCertfnValidTo",
+                  "InspectionLotType",
+                  "QltyInProcmtLotCrtnLeadTime",
+                  "QltyInProcmtCertificateCtrl",
+                  "QltyInProcmtLongText",
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyFirstArticleInsp"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityInProcurementType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update entity in QualityInProcurement",
+        "tags": [
+          "Quality Info Record Data"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified QualityInProcurementType",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType-update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete entity from QualityInProcurement",
+        "tags": [
+          "Quality Info Record Data"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/QualityInProcurement(Material='{Material}',QltyInProcmtIntID='{QltyInProcmtIntID}')/to_QltyFirstArticleInsp": {
+      "parameters": [
+        {
+          "name": "Material",
+          "in": "path",
+          "required": true,
+          "description": "Material Number",
+          "schema": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        {
+          "name": "QltyInProcmtIntID",
+          "in": "path",
+          "required": true,
+          "description": "Quality Info Record in Procurement Internal ID",
+          "schema": {
+            "type": "string",
+            "maxLength": 6
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related to_QltyFirstArticleInsp",
+        "tags": [
+          "Quality Info Record Data",
+          "First Article Inspection Data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "Material desc",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmtIntID desc",
+                  "QltyInProcmt1stArticleInsp",
+                  "QltyInProcmt1stArticleInsp desc",
+                  "PurchaseOrder",
+                  "PurchaseOrder desc",
+                  "PurchaseOrderItem",
+                  "PurchaseOrderItem desc",
+                  "InspLotUsageDecisionValuation",
+                  "InspLotUsageDecisionValuation desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Material",
+                  "QltyInProcmtIntID",
+                  "QltyInProcmt1stArticleInsp",
+                  "PurchaseOrder",
+                  "PurchaseOrderItem",
+                  "InspLotUsageDecisionValuation",
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "to_QltyInProcurement"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of QualityFirstArticleInspectionType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new entity to related to_QltyFirstArticleInsp",
+        "tags": [
+          "Quality Info Record Data",
+          "First Article Inspection Data"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "QualityFirstArticleInspectionType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": [
+          "Batch Requests"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET QualityFirstArticleInspection HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuthentication": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "QltyInProcmtIntID": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "QIR Internal ID",
+            "description": "Quality Info Record in Procurement Internal ID"
+          },
+          "QltyInProcmt1stArticleInsp": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "First Article Insp.",
+            "description": "First Article Inspection Number in Quality Info Record"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "InspLotUsageDecisionValuation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code Valuation"
+          },
+          "to_QltyInProcurement": {
+            "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType"
+          }
+        },
+        "title": "First Article Inspection Data"
+      },
+      "cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-create": {
+        "type": "object",
+        "properties": {
+          "QltyInProcmt1stArticleInsp": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "First Article Insp.",
+            "description": "First Article Inspection Number in Quality Info Record"
+          },
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "InspLotUsageDecisionValuation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code Valuation"
+          },
+          "to_QltyInProcurement": {
+            "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityInProcurementType-create"
+          }
+        },
+        "required": [
+          "QltyInProcmt1stArticleInsp"
+        ],
+        "title": "First Article Inspection Data (for create)"
+      },
+      "cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-update": {
+        "type": "object",
+        "properties": {
+          "PurchaseOrder": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Purchasing Document",
+            "description": "Purchasing Document Number"
+          },
+          "PurchaseOrderItem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 5,
+            "title": "Item",
+            "description": "Item Number of Purchasing Document"
+          },
+          "InspLotUsageDecisionValuation": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Code Valuation"
+          }
+        },
+        "title": "First Article Inspection Data (for update)"
+      },
+      "cds_api_qualityinforecord_srv.QualityInProcurementType": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "QltyInProcmtIntID": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "QIR Internal ID",
+            "description": "Quality Info Record in Procurement Internal ID"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Vendor's account number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MaterialRevisionLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Revision Level"
+          },
+          "QltyInProcmtReleaseValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Release Until",
+            "description": "Date Until Which the Release Is Valid"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Base Unit of Measure for the Material"
+          },
+          "ReleasedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Release Quantity",
+            "description": "Quantity Released for the Material"
+          },
+          "BlockReason": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Block Reason",
+            "description": "Blocking Reason"
+          },
+          "ProcurementBlock": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Block Function",
+            "description": "Function That Will Be Blocked"
+          },
+          "QltyInProcmtRelQtyIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Release Quantity Is Active"
+          },
+          "QltyInProcmtInspControl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Inspection Control",
+            "description": "Inspection Control in the QM Info Record"
+          },
+          "ProdnPieceApprovalIsRequired": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "PPAP Required",
+            "description": "Production Part Approval Is Required"
+          },
+          "ProductionPieceApproval": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "PPAP",
+            "description": "Production Part Approval Identifier"
+          },
+          "ProductionPieceApprovalLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Level",
+            "description": "Production Part Approval for Part Submission Warrant"
+          },
+          "ProductionPieceApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Status",
+            "description": "Production Part Approval Status"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Flag"
+          },
+          "QualityManagementSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Actual QM System",
+            "description": "Supplier's QM System"
+          },
+          "QltyInProcmtCertfnValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "QM System Valid To",
+            "description": "Validity Date of Certification"
+          },
+          "InspectionLotType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Source Inspection",
+            "description": "Inspection Type for Insp. Lot Origin (Source Inspection)"
+          },
+          "QltyInProcmtLotCrtnLeadTime": {
+            "type": "integer",
+            "nullable": true,
+            "format": "uint8",
+            "title": "Lead Time (in Days)",
+            "description": "Lot Creation Lead Time (in Days) for Source Inspection"
+          },
+          "QltyInProcmtCertificateCtrl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Certificate",
+            "description": "Control of Certificate Receipt"
+          },
+          "QltyInProcmtLongText": {
+            "type": "string",
+            "nullable": true,
+            "title": "Long Text"
+          },
+          "to_QltyFirstArticleInsp": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType"
+                }
+              }
+            }
+          }
+        },
+        "title": "Quality Info Record Data"
+      },
+      "cds_api_qualityinforecord_srv.QualityInProcurementType-create": {
+        "type": "object",
+        "properties": {
+          "Material": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Material",
+            "description": "Material Number"
+          },
+          "QltyInProcmtIntID": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "QIR Internal ID",
+            "description": "Quality Info Record in Procurement Internal ID"
+          },
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Vendor's account number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MaterialRevisionLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Revision Level"
+          },
+          "QltyInProcmtReleaseValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Release Until",
+            "description": "Date Until Which the Release Is Valid"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Base Unit of Measure for the Material"
+          },
+          "ReleasedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Release Quantity",
+            "description": "Quantity Released for the Material"
+          },
+          "BlockReason": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Block Reason",
+            "description": "Blocking Reason"
+          },
+          "ProcurementBlock": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Block Function",
+            "description": "Function That Will Be Blocked"
+          },
+          "QltyInProcmtRelQtyIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Release Quantity Is Active"
+          },
+          "QltyInProcmtInspControl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Inspection Control",
+            "description": "Inspection Control in the QM Info Record"
+          },
+          "ProdnPieceApprovalIsRequired": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "PPAP Required",
+            "description": "Production Part Approval Is Required"
+          },
+          "ProductionPieceApproval": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "PPAP",
+            "description": "Production Part Approval Identifier"
+          },
+          "ProductionPieceApprovalLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Level",
+            "description": "Production Part Approval for Part Submission Warrant"
+          },
+          "ProductionPieceApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Status",
+            "description": "Production Part Approval Status"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Flag"
+          },
+          "QualityManagementSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Actual QM System",
+            "description": "Supplier's QM System"
+          },
+          "QltyInProcmtCertfnValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "QM System Valid To",
+            "description": "Validity Date of Certification"
+          },
+          "InspectionLotType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Source Inspection",
+            "description": "Inspection Type for Insp. Lot Origin (Source Inspection)"
+          },
+          "QltyInProcmtLotCrtnLeadTime": {
+            "type": "integer",
+            "nullable": true,
+            "format": "uint8",
+            "title": "Lead Time (in Days)",
+            "description": "Lot Creation Lead Time (in Days) for Source Inspection"
+          },
+          "QltyInProcmtCertificateCtrl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Certificate",
+            "description": "Control of Certificate Receipt"
+          },
+          "QltyInProcmtLongText": {
+            "type": "string",
+            "nullable": true,
+            "title": "Long Text"
+          },
+          "to_QltyFirstArticleInsp": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/cds_api_qualityinforecord_srv.QualityFirstArticleInspectionType-create"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Material",
+          "QltyInProcmtIntID"
+        ],
+        "title": "Quality Info Record Data (for create)"
+      },
+      "cds_api_qualityinforecord_srv.QualityInProcurementType-update": {
+        "type": "object",
+        "properties": {
+          "Supplier": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "Supplier",
+            "description": "Vendor's account number"
+          },
+          "Plant": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Plant"
+          },
+          "MaterialRevisionLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Revision Level"
+          },
+          "QltyInProcmtReleaseValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "Release Until",
+            "description": "Date Until Which the Release Is Valid"
+          },
+          "BaseUnit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 3,
+            "title": "Unit of Measure",
+            "description": "Base Unit of Measure for the Material"
+          },
+          "ReleasedQuantity": {
+            "type": "string",
+            "nullable": true,
+            "format": "decimal",
+            "multipleOf": 1.0e-3,
+            "minimum": -9999999999.999,
+            "maximum": 9999999999.999,
+            "example": "0",
+            "title": "Release Quantity",
+            "description": "Quantity Released for the Material"
+          },
+          "BlockReason": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 40,
+            "title": "Block Reason",
+            "description": "Blocking Reason"
+          },
+          "ProcurementBlock": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "Block Function",
+            "description": "Function That Will Be Blocked"
+          },
+          "QltyInProcmtRelQtyIsActive": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Release Quantity Is Active"
+          },
+          "QltyInProcmtInspControl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Inspection Control",
+            "description": "Inspection Control in the QM Info Record"
+          },
+          "ProdnPieceApprovalIsRequired": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "PPAP Required",
+            "description": "Production Part Approval Is Required"
+          },
+          "ProductionPieceApproval": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 10,
+            "title": "PPAP",
+            "description": "Production Part Approval Identifier"
+          },
+          "ProductionPieceApprovalLevel": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Level",
+            "description": "Production Part Approval for Part Submission Warrant"
+          },
+          "ProductionPieceApprovalStatus": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2,
+            "title": "PPAP Status",
+            "description": "Production Part Approval Status"
+          },
+          "IsDeleted": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Deletion Flag"
+          },
+          "QualityManagementSystem": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4,
+            "title": "Actual QM System",
+            "description": "Supplier's QM System"
+          },
+          "QltyInProcmtCertfnValidTo": {
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492041600000)/",
+            "title": "QM System Valid To",
+            "description": "Validity Date of Certification"
+          },
+          "InspectionLotType": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8,
+            "title": "Source Inspection",
+            "description": "Inspection Type for Insp. Lot Origin (Source Inspection)"
+          },
+          "QltyInProcmtLotCrtnLeadTime": {
+            "type": "integer",
+            "nullable": true,
+            "format": "uint8",
+            "title": "Lead Time (in Days)",
+            "description": "Lot Creation Lead Time (in Days) for Source Inspection"
+          },
+          "QltyInProcmtCertificateCtrl": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 1,
+            "title": "Certificate",
+            "description": "Control of Certificate Receipt"
+          },
+          "QltyInProcmtLongText": {
+            "type": "string",
+            "nullable": true,
+            "title": "Long Text"
+          }
+        },
+        "title": "Quality Info Record Data (for update)"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "object",
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "allpages",
+            "none"
+          ]
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
