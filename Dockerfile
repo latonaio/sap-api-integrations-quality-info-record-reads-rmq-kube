@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:experimental
 # Build Container
-FROM golang:1.17.3 as builder
+FROM golang:1.18 as builder
 
 ENV GO111MODULE on
 ENV GOPRIVATE=github.com/latonaio
@@ -23,6 +23,5 @@ ENV SERVICE=sap-api-integrations-quality-info-record-reads-rmq-kube \
 WORKDIR ${AION_HOME}
 
 COPY --from=builder /go/src/github.com/latonaio/sap-api-integrations-quality-info-record-reads-rmq-kube .
-COPY --from=builder /go/src/github.com/latonaio/sample.json .
 
 CMD ["./sap-api-integrations-quality-info-record-reads-rmq-kube"]

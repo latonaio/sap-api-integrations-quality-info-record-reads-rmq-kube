@@ -10,7 +10,7 @@ sap-api-integrations-quality-info-record-reads-rmq-kube は、主にエッジコ
 ・ エッジ Kubernetes （推奨）    
 ・ AION のリソース （推奨)    
 ・ OS: LinuxOS （必須）    
-・ CPU: ARM/AMD/Intel（いずれか必須）
+・ CPU: ARM/AMD/Intel（いずれか必須）  
 ・ RabbitMQ on Kubernetes  
 ・ RabbitMQ Client　　
 
